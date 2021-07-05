@@ -1,0 +1,4 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const ColegioSchema = new Schema({});
+module.exports = mongoose.model('Colegios', ColegioSchema)

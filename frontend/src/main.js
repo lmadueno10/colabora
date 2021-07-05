@@ -1,0 +1,1 @@
+import "../components/dev/components-obs/fichacolegio-obs";
