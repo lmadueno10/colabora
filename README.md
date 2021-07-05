@@ -1,4 +1,4 @@
-## Aplicación para desarrollar componentes para el frontend y backend del Observatorio de Proyectos
+## Aplicación para desarrollar componentes en el observatorio PIP
 
 1. Clonar el repositorio  
    `git clone https://github.com/lmadueno10/colabora.git`
