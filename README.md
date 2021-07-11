@@ -11,8 +11,8 @@
 3. Ir a la carpeta frontend, instalar las depedencias e iniciar  
    `cd colabora/frontend`  
    `npm install`  
-   `cd colabora/frontend/components`. 
-   `npm install`
+   `cd colabora/frontend/components`  
+   `npm install`  
    `npm start`
 
 4. Actualizar la lista de componentes previo a generar el bundle  
