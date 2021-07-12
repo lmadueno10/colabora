@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://labs.easyblog.it/maps/leaflet-panel-layers/src/leaflet-panel-layers.css"
+    />
+    <link
+      rel="stylesheet"
+      href="http://observatorio.colaboraccion.pe/assets/extramarkers/css/leaflet.extra-markers.min.css"
+    />
+    <script type="module" src="../components-obs/panelcapas-obs.js"></script>
+  </head>
+  <body>
+    <div id="map" style="position: absolute; width: 100%; height: 100%"></div>
+    <panelcapas-obs></panelcapas-obs>
+
+    <script
+      type="text/javascript"
+      src="http://observatorio.colaboraccion.pe/assets/leaflet/leaflet.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://labs.easyblog.it/maps/leaflet-panel-layers/src/leaflet-panel-layers.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://observatorio.colaboraccion.pe/assets/extramarkers/js/leaflet.extra-markers.min.js"
+    ></script>
+    <script src="../../node_modules/axios/dist/axios.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function (event) {
+        var map = L.map("map").setView([51.505, -0.09], 1);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+
+        var overLayers = [
+          {
+            name: "Bar",
+            layer: L.layerGroup(),
+          },
+        ];
+
+        var panelLayers = new L.Control.PanelLayers({}, overLayers, {
+          collapsibleGroups: true,
+          collapsed: false,
+        });
+
+        map.addControl(panelLayers);
+
+        document.querySelector("panelcapas-obs").map = map;
+        document.querySelector("panelcapas-obs").panel = panelLayers;
+      });
+    </script>
+  </body>
+</html>

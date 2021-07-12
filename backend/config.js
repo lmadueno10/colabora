@@ -1,3 +1,3 @@
 module.exports = {
-    MONGO_URI: `mongodb+srv://colabora:36T6yT2GOp5FQjiR@colaboraccion.gws1p.mongodb.net/colabora?retryWrites=true&w=majority`
+    MONGO_URI: `mongodb://78.46.16.8:27017/colabora`
 }
