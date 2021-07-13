@@ -12,7 +12,7 @@ export class ImpDataObs extends LitElement {
     }
 
     static get styles() {
-        return css`        
+        return css `        
         mwc-dialog {
             --mdc-dialog-min-width: 400px;            
         }
@@ -35,22 +35,30 @@ export class ImpDataObs extends LitElement {
         this.toogleIsProcessing();
         const files = this.shadowRoot.querySelector("[type=file]").files;
         const formData = new FormData();
+        //console.log(files);
         for (let i = 0; i < files.length; i++) {
-            let file = files[i];          
-            formData.append("files[]", file);
+            let file = files[i];
+            formData.append("files", file);
+            //console.log(file);
         }
-
-        const res = await fetch("http://localhost/cad/recibir_archivo.php", {
+        const res = await fetch("http://localhost:3800/upload", {
             method: "POST",
             body: formData,
         });
 
-        if(res.status === 200){
+        console.log(res);
+
+        if (res.status === 200) {
             this.toogleIsProcessing();
             alert("Se procesó el archivo correctamente!");
+            setTimeout(() => {
+                this.shadowRoot.querySelector("mwc-dialog").close();
+            }, 800);
         } else {
+            this.toogleIsProcessing();
             alert("Ocurrió un error procesando la petición");
         }
+
     }
 
     toogleIsProcessing() {
@@ -63,14 +71,14 @@ export class ImpDataObs extends LitElement {
     }
 
     render() {
-        return html`
-            <mwc-button label="Importar" @click="${this.handleClickImport}"></mwc-button>
+            return html `
+            <mwc-button class="mdc-button mdc-button--unelevated" label="Importar" @click="${this.handleClickImport}"></mwc-button>
             
-            <mwc-dialog heading="Gustavo ponle un titulo">
+            <mwc-dialog heading="Importar Data Externa">
                 <div>
                     ${this.isProcessing ? 
                     html`<mwc-circular-progress indeterminate></mwc-circular-progress>` : 
-                    html`<input type="file">`
+                    html`<input type="file" id='files' name='files' accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'>`
                     }
                 </div>
                 ${this.isProcessing ? "" : html`
